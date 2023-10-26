@@ -121,8 +121,10 @@ class HomePage extends StatelessWidget {
         listener: (context, state) {
           if (state is InternetConnected) {
             weatherBloc.add(const FetchWeatherByLocation());
-            Navigator.of(context, rootNavigator: true).pop();
+            debugPrint('Internet Connected');
+            // Navigator.of(context).pop();
           } else if (state is InternetDisconnected) {
+            debugPrint('Internet Disconnected');
             DialogHelper.showInternetDisconnectedDialog(context);
           }
         },

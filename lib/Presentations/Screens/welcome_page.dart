@@ -77,8 +77,8 @@ class WelcomePage extends StatelessWidget {
                   onTap: () {
                     _determinePosition().then((value) {
                       // clear the previous route and push the new route
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/home', (Route<dynamic> route) => false,
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, '/home', (route) => false,
                           arguments: value);
                     });
                   },
