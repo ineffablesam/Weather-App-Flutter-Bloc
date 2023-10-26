@@ -1,0 +1,45 @@
+{
+  "coord": {
+    "lon": 79.1333,
+    "lat": 12.9333
+  },
+  "weather": [
+    {
+      "id": 801,
+      "main": "Clouds",
+      "description": "few clouds",
+      "icon": "02d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 33.92,
+    "feels_like": 32.56,
+    "temp_min": 33.92,
+    "temp_max": 33.92,
+    "pressure": 1009,
+    "humidity": 26,
+    "sea_level": 1009,
+    "grnd_level": 986
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 1.34,
+    "deg": 344,
+    "gust": 2.63
+  },
+  "clouds": {
+    "all": 12
+  },
+  "dt": 1698134768,
+  "sys": {
+    "country": "IN",
+    "sunrise": 1698107693,
+    "sunset": 1698150018
+  },
+  "timezone": 19800,
+  "id": 1253286,
+  "name": "Vellore",
+  "cod": 200
+}
+
