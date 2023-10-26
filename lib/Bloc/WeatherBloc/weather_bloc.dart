@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io' show Platform;
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:http/http.dart';
@@ -25,17 +27,13 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
   Future<void> _fetchWeatherData(
       WeatherEvent event, Emitter<WeatherState> emit) async {
-    debugPrint('_fetchWeatherData');
     try {
       emit(WeatherLoading());
       if (event is FetchWeatherByCity) {
-        debugPrint('_fetchWeatherData: ${event.city}');
         final response = await _apiServices.getWeatherDataByCity(event.city);
-        debugPrint('_fetchWeatherDataResponse: ${response.body}');
         await _handleResponse(response, emit);
       } else if (event is FetchWeatherByLocation) {
         final response = await _apiServices.getWeatherDataByLocation();
-        debugPrint('_fetchWeatherDataResponse: ${response.body}');
         await _handleResponse(response, emit);
       }
     } catch (error) {
@@ -49,7 +47,6 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     if (response.statusCode == 200) {
       BaseWeatherModel baseWeatherModel =
           BaseWeatherModel.fromJson(jsonDecode(response.body));
-      debugPrint('_handleResponse: ${baseWeatherModel.main?.temp}');
       await updateWeatherWidget(baseWeatherModel.main?.temp.toString() ?? '',
           baseWeatherModel.weather?[0].main ?? '', baseWeatherModel.name ?? '');
       emit(WeatherLoaded(baseWeatherModel: baseWeatherModel));
@@ -71,9 +68,14 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       await HomeWidget.saveWidgetData<String>('weather', weather);
       await HomeWidget.saveWidgetData<String>('city', city);
       await HomeWidget.updateWidget(iOSName: iosWidgetName);
-      debugPrint("Weather widget updated successfully.");
+      debugPrint("📱Weather widget updated successfully in the home screen");
     } catch (e) {
-      debugPrint("Error updating weather widget: $e Fatal error!");
+      if (e is PlatformException && Platform.isAndroid) {
+        debugPrint(
+            "📱Error updating the widget: Android doesn't have a widget for this app");
+      } else {
+        debugPrint("📱Error updating the widget: $e");
+      }
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather/Presentations/Screens/account_page.dart';
 import 'package:weather/Presentations/Screens/home_page.dart';
 import 'package:weather/Presentations/Screens/welcome_page.dart';
 
@@ -9,6 +10,8 @@ class RoutesGenerators {
         return MaterialPageRoute(builder: (_) => const WelcomePage());
       case '/home':
         return MaterialPageRoute(builder: (_) => const HomePage());
+      case '/account':
+        return MaterialPageRoute(builder: (_) => const AccountPage());
       default:
         return MaterialPageRoute(
             builder: (_) => _NoRoute(

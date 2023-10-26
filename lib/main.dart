@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:home_widget/home_widget.dart';
+import 'package:weather/Bloc/InternetBloc/internet_bloc.dart';
 import 'package:weather/Bloc/TemperatureUnitsBloc/temperatureunit_bloc.dart';
 import 'package:weather/Data/Repository/weather_repo.dart';
 import 'package:weather/Services/notification_service.dart';
@@ -31,6 +32,10 @@ class MyApp extends StatelessWidget {
           create: (context) => WeatherBloc(
             RepositoryProvider.of<WeatherRepository>(context),
           ),
+        ),
+        // Internet Bloc
+        BlocProvider(
+          create: (context) => InternetBloc(),
         ),
         //Cities Cubit
         BlocProvider(
