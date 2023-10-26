@@ -1,6 +1,17 @@
+<img width="120" alt="app-icon" src="https://i.postimg.cc/rFyG5KM8/splash-logo.png">
+
 # Weather-App-Flutter
  A Flutter Weather app built for IOS and Android includes IOS Homescreen widget and Used Bloc Clean Architecture for future enhancements and easy maintainability
+<br/>
 
+## Extra Feautures
+
+- Home Widget(Only-IOS) for better view of Temperature
+- Notification using awesome_notification which is compatible for both IOS & Android which includes advanced actions. Please refer to below Screenshots or Demo Video for better understandability
+
+## Video Demo
+
+https://youtube.com
 
 
 ## Screens
